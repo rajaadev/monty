@@ -2,9 +2,11 @@
 /**
 * push - Pushes an element onto the stack.
 * @stack: Double pointer to the head of the stack.
+* @data: String representing the integer
+* value to push onto the stack.
 * @line_number: Line number being executed from the Monty file.
 */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, char *data, unsigned int line_number)
 {
 	stack_t *new_node;
 	int value;
@@ -87,23 +89,4 @@ void pop(stack_t **stack, unsigned int line_number)
 	temp = *stack;
 	*stack = (*stack)->next;
 	free(temp);
-}
-/**
-* swap - Swaps the top two elements of the stack.
-* @stack: Double pointer to the head of the stack.
-* @line_number: The line number in the file where the opcode appears.
-*/
-void swap(stack_t **stack, unsigned int line_number)
-{
-	int temp;
-
-	if (is_empty(*stack) || (*stack)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	temp = (*stack)->n;
-	(*stack)->n = (*stack)->next->n;
-	(*stack)->next->n = temp;
 }
