@@ -3,6 +3,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdarg.h>
+
+#define _GNU_SOURCE
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,9 +39,41 @@ typedef struct instruction_s
 } instruction_t;
 
 /* File Function1.c  prototypes */
-void push(stack_t **stack, char *data, unsigned int line_number);
+void push(stack_t **stack, int value);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+int is_empty(stack_t *stack);
 void pop(stack_t **stack, unsigned int line_number);
+
+/* File operations.c  prototypes */
+
+void add(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void div(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
+/* File operations1.c  prototypes */
+void rotl(stack_t **stack, unsigned int line_number);
+void rotr(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
+/* File operations2.c  prototypes */
+void queue(stack_t **stack, unsigned int line_number);
+void stack(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t **stack);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
+
+/* File errors.c  prototypes */
+void err(int error_code, ...);
+void more_err(int error_code, ...);
+void string_err(int error_code, ...);
+/* operations file prototypes*/
+void open_file(char *file_name);
+int parse_line(char *buffer, int line_number, int format);
+void read_file(FILE *);
+void find_func(char *, char *, int, int);
+void call_fun(char *op, char *val, int ln, int format);
 
 #endif
